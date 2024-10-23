@@ -1,6 +1,4 @@
-Here's a comprehensive README.md for your project:
 
-```markdown
 # Deep Hybrid Models for Missing Data Imputation
 
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
@@ -44,7 +42,6 @@ A sophisticated framework for missing data imputation using hybrid deep learning
 
 ### Setting Up the Environment
 
-```bash
 # Clone the repository
 git clone https://github.com/kchemorion/missing-data-imputation.git
 cd missing-data-imputation
@@ -233,4 +230,3 @@ For support, please:
 - Project Link: [https://github.com/kchemorion/missing-data-imputation](https://github.com/kchemorion/missing-data-imputation)
 ```
 
-Would you like me to also create any of the referenced documents (CONTRIBUTING.md, LICENSE, etc.) or add more specific sections to the README?
