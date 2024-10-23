@@ -56,13 +56,13 @@ pip install -r requirements.txt
 
 ### Optional: Docker Support
 
-```bash
+
 # Build the Docker image
 docker build -t missing-data-imputation .
 
 # Run the container
 docker run -it --gpus all missing-data-imputation
-```
+
 
 ## Project Structure
 
