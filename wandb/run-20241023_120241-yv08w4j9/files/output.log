@@ -1,0 +1,30 @@
+INFO:__main__:Preparing data...
+INFO:__main__:Creating model...
+INFO:__main__:Starting training...
+Training:   0%|                                                                                                                  | 0/157 [00:00<?, ?it/s]
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+Mask shape: torch.Size([64, 20])
+X shape: torch.Size([64, 20])
+Imputed shape: torch.Size([64, 20])
+Uncertainty shape: torch.Size([64, 20])
+Traceback (most recent call last):
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/train.py", line 267, in <module>
+    main(args.config)
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/train.py", line 172, in main
+    history = trainer.train(
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/experiments/trainer.py", line 142, in train
+    train_metrics = self._train_epoch(gradient_clip_val)
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/experiments/trainer.py", line 203, in _train_epoch
+    total_loss.backward()
+AttributeError: 'int' object has no attribute 'backward'
+Traceback (most recent call last):
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/train.py", line 267, in <module>
+    main(args.config)
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/train.py", line 172, in main
+    history = trainer.train(
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/experiments/trainer.py", line 142, in train
+    train_metrics = self._train_epoch(gradient_clip_val)
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/experiments/trainer.py", line 203, in _train_epoch
+    total_loss.backward()
+AttributeError: 'int' object has no attribute 'backward'

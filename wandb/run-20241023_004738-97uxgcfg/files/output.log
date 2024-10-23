@@ -1,0 +1,17 @@
+INFO:__main__:Preparing data...
+Traceback (most recent call last):
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/train.py", line 262, in <module>
+    main(args.config)
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/train.py", line 153, in main
+    train_loader, val_loader, preprocessor = prepare_data(data_config)
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/train.py", line 67, in prepare_data
+    data, mask = generate_mixed_type_data(
+TypeError: generate_mixed_type_data() got an unexpected keyword argument 'n_features'
+Traceback (most recent call last):
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/train.py", line 262, in <module>
+    main(args.config)
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/train.py", line 153, in main
+    train_loader, val_loader, preprocessor = prepare_data(data_config)
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/train.py", line 67, in prepare_data
+    data, mask = generate_mixed_type_data(
+TypeError: generate_mixed_type_data() got an unexpected keyword argument 'n_features'

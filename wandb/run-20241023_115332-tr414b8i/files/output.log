@@ -1,0 +1,30 @@
+INFO:__main__:Preparing data...
+INFO:__main__:Creating model...
+INFO:__main__:Starting training...
+Training:   0%|                                                                                                                  | 0/157 [00:00<?, ?it/s]
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+Traceback (most recent call last):
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/train.py", line 267, in <module>
+    main(args.config)
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/train.py", line 172, in main
+    history = trainer.train(
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/experiments/trainer.py", line 142, in train
+    train_metrics = self._train_epoch(gradient_clip_val)
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/experiments/trainer.py", line 191, in _train_epoch
+    losses = self.model.compute_loss(x, mask, outputs)
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/models/hybrid.py", line 180, in compute_loss
+    outputs['imputed'][mask],
+IndexError: tensors used as indices must be long, int, byte or bool tensors
+Traceback (most recent call last):
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/train.py", line 267, in <module>
+    main(args.config)
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/train.py", line 172, in main
+    history = trainer.train(
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/experiments/trainer.py", line 142, in train
+    train_metrics = self._train_epoch(gradient_clip_val)
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/experiments/trainer.py", line 191, in _train_epoch
+    losses = self.model.compute_loss(x, mask, outputs)
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/models/hybrid.py", line 180, in compute_loss
+    outputs['imputed'][mask],
+IndexError: tensors used as indices must be long, int, byte or bool tensors

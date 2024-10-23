@@ -1,0 +1,48 @@
+INFO:__main__:Preparing data...
+INFO:__main__:Creating model...
+INFO:__main__:Starting training...
+Training:   0%|                                                                                                                  | 0/157 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/train.py", line 267, in <module>
+    main(args.config)
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/train.py", line 172, in main
+    history = trainer.train(
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/experiments/trainer.py", line 142, in train
+    train_metrics = self._train_epoch(gradient_clip_val)
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/experiments/trainer.py", line 190, in _train_epoch
+    outputs = self.model(x, mask)
+  File "/home/blvksh33p/Documents/models/env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/blvksh33p/Documents/models/env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/models/hybrid.py", line 86, in forward
+    bn_beliefs = self.bn.update_beliefs(vae_outputs['latent'], x * mask)
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/models/bayesian.py", line 110, in update_beliefs
+    self._initialize_cpds(latent_np)
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/models/bayesian.py", line 35, in _initialize_cpds
+    cpd = TabularCPD(
+  File "/home/blvksh33p/Documents/models/env/lib/python3.10/site-packages/pgmpy/factors/discrete/CPD.py", line 142, in __init__
+    raise ValueError(
+ValueError: values must be of shape (3, 1). Got shape: (1, 3)
+Traceback (most recent call last):
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/train.py", line 267, in <module>
+    main(args.config)
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/train.py", line 172, in main
+    history = trainer.train(
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/experiments/trainer.py", line 142, in train
+    train_metrics = self._train_epoch(gradient_clip_val)
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/experiments/trainer.py", line 190, in _train_epoch
+    outputs = self.model(x, mask)
+  File "/home/blvksh33p/Documents/models/env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/blvksh33p/Documents/models/env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/models/hybrid.py", line 86, in forward
+    bn_beliefs = self.bn.update_beliefs(vae_outputs['latent'], x * mask)
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/models/bayesian.py", line 110, in update_beliefs
+    self._initialize_cpds(latent_np)
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/models/bayesian.py", line 35, in _initialize_cpds
+    cpd = TabularCPD(
+  File "/home/blvksh33p/Documents/models/env/lib/python3.10/site-packages/pgmpy/factors/discrete/CPD.py", line 142, in __init__
+    raise ValueError(
+ValueError: values must be of shape (3, 1). Got shape: (1, 3)

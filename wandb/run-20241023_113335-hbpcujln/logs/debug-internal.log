@@ -1,0 +1,19 @@
+{"time":"2024-10-23T11:33:35.416071706+03:00","level":"INFO","msg":"using version","core version":"0.18.5"}
+{"time":"2024-10-23T11:33:35.416082697+03:00","level":"INFO","msg":"created symlink","path":"/home/blvksh33p/Documents/models/missing_data_imputation/wandb/run-20241023_113335-hbpcujln/logs/debug-core.log"}
+{"time":"2024-10-23T11:33:36.624232835+03:00","level":"INFO","msg":"created new stream","id":"hbpcujln"}
+{"time":"2024-10-23T11:33:36.624264706+03:00","level":"INFO","msg":"stream: started","id":"hbpcujln"}
+{"time":"2024-10-23T11:33:36.624291358+03:00","level":"INFO","msg":"sender: started","stream_id":"hbpcujln"}
+{"time":"2024-10-23T11:33:36.624285587+03:00","level":"INFO","msg":"writer: Do: started","stream_id":{"value":"hbpcujln"}}
+{"time":"2024-10-23T11:33:36.624335032+03:00","level":"INFO","msg":"handler: started","stream_id":{"value":"hbpcujln"}}
+{"time":"2024-10-23T11:33:37.101661286+03:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2024-10-23T11:33:38.377356808+03:00","level":"INFO","msg":"stream: closing","id":"hbpcujln"}
+{"time":"2024-10-23T11:33:38.377382778+03:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2024-10-23T11:33:38.377765845+03:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2024-10-23T11:33:38.586288178+03:00","level":"WARN","msg":"No job ingredients found, not creating job artifact"}
+{"time":"2024-10-23T11:33:38.586303808+03:00","level":"WARN","msg":"No source type found, not creating job artifact"}
+{"time":"2024-10-23T11:33:38.586309038+03:00","level":"INFO","msg":"sender: sendDefer: no job artifact to save"}
+{"time":"2024-10-23T11:33:39.060536341+03:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2024-10-23T11:33:39.25928828+03:00","level":"INFO","msg":"handler: closed","stream_id":{"value":"hbpcujln"}}
+{"time":"2024-10-23T11:33:39.259341032+03:00","level":"INFO","msg":"sender: closed","stream_id":"hbpcujln"}
+{"time":"2024-10-23T11:33:39.25932973+03:00","level":"INFO","msg":"writer: Close: closed","stream_id":{"value":"hbpcujln"}}
+{"time":"2024-10-23T11:33:39.25948002+03:00","level":"INFO","msg":"stream: closed","id":"hbpcujln"}

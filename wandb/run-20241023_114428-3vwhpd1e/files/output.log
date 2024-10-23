@@ -1,0 +1,60 @@
+INFO:__main__:Preparing data...
+INFO:__main__:Creating model...
+INFO:__main__:Starting training...
+Training:   0%|                                                                                                                  | 0/157 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/train.py", line 267, in <module>
+    main(args.config)
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/train.py", line 172, in main
+    history = trainer.train(
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/experiments/trainer.py", line 142, in train
+    train_metrics = self._train_epoch(gradient_clip_val)
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/experiments/trainer.py", line 190, in _train_epoch
+    outputs = self.model(x, mask)
+  File "/home/blvksh33p/Documents/models/env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/blvksh33p/Documents/models/env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/models/hybrid.py", line 126, in forward
+    combined_predictions = self.fusion_layer(
+  File "/home/blvksh33p/Documents/models/env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/blvksh33p/Documents/models/env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/blvksh33p/Documents/models/env/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/blvksh33p/Documents/models/env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/blvksh33p/Documents/models/env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/blvksh33p/Documents/models/env/lib/python3.10/site-packages/torch/nn/modules/linear.py", line 125, in forward
+    return F.linear(input, self.weight, self.bias)
+RuntimeError: mat1 and mat2 shapes cannot be multiplied (64x23 and 40x20)
+Traceback (most recent call last):
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/train.py", line 267, in <module>
+    main(args.config)
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/train.py", line 172, in main
+    history = trainer.train(
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/experiments/trainer.py", line 142, in train
+    train_metrics = self._train_epoch(gradient_clip_val)
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/experiments/trainer.py", line 190, in _train_epoch
+    outputs = self.model(x, mask)
+  File "/home/blvksh33p/Documents/models/env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/blvksh33p/Documents/models/env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/models/hybrid.py", line 126, in forward
+    combined_predictions = self.fusion_layer(
+  File "/home/blvksh33p/Documents/models/env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/blvksh33p/Documents/models/env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/blvksh33p/Documents/models/env/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/blvksh33p/Documents/models/env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/blvksh33p/Documents/models/env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/blvksh33p/Documents/models/env/lib/python3.10/site-packages/torch/nn/modules/linear.py", line 125, in forward
+    return F.linear(input, self.weight, self.bias)
+RuntimeError: mat1 and mat2 shapes cannot be multiplied (64x23 and 40x20)

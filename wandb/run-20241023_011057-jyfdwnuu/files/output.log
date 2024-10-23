@@ -1,0 +1,26 @@
+INFO:__main__:Preparing data...
+INFO:__main__:Creating model...
+Traceback (most recent call last):
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/train.py", line 267, in <module>
+    main(args.config)
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/train.py", line 153, in main
+    model = create_model(model_config, preprocessor.input_dim)
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/train.py", line 113, in create_model
+    model = HybridImputationModel(input_dim, config)
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/models/hybrid.py", line 56, in __init__
+    self.vae = VariationalAutoencoder(input_dim, config)
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/models/vae.py", line 107, in __init__
+    hidden_dims = config.get('hidden_dims', [256, 128, 64])
+AttributeError: 'ModelConfig' object has no attribute 'get'
+Traceback (most recent call last):
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/train.py", line 267, in <module>
+    main(args.config)
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/train.py", line 153, in main
+    model = create_model(model_config, preprocessor.input_dim)
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/train.py", line 113, in create_model
+    model = HybridImputationModel(input_dim, config)
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/models/hybrid.py", line 56, in __init__
+    self.vae = VariationalAutoencoder(input_dim, config)
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/models/vae.py", line 107, in __init__
+    hidden_dims = config.get('hidden_dims', [256, 128, 64])
+AttributeError: 'ModelConfig' object has no attribute 'get'
