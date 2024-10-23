@@ -153,7 +153,7 @@ def main(config_path: str):
     model = create_model(model_config, preprocessor.input_dim)
     
     # Move model to device
-    device = torch.device(exp_config.device if torch.cuda.is_available() else "cpu")
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = model.to(device)
     
     # Initialize trainer

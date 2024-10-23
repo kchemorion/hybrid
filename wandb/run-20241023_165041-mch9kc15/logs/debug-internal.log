@@ -1,0 +1,16 @@
+{"time":"2024-10-23T16:50:41.75603675+03:00","level":"INFO","msg":"using version","core version":"0.18.5"}
+{"time":"2024-10-23T16:50:41.756051849+03:00","level":"INFO","msg":"created symlink","path":"/home/blvksh33p/Documents/models/missing_data_imputation/wandb/run-20241023_165041-mch9kc15/logs/debug-core.log"}
+{"time":"2024-10-23T16:50:42.965421931+03:00","level":"INFO","msg":"created new stream","id":"mch9kc15"}
+{"time":"2024-10-23T16:50:42.965503547+03:00","level":"INFO","msg":"stream: started","id":"mch9kc15"}
+{"time":"2024-10-23T16:50:42.965563992+03:00","level":"INFO","msg":"sender: started","stream_id":"mch9kc15"}
+{"time":"2024-10-23T16:50:42.965532091+03:00","level":"INFO","msg":"handler: started","stream_id":{"value":"mch9kc15"}}
+{"time":"2024-10-23T16:50:42.965505841+03:00","level":"INFO","msg":"writer: Do: started","stream_id":{"value":"mch9kc15"}}
+{"time":"2024-10-23T16:50:43.459902332+03:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2024-10-23T16:50:44.751232759+03:00","level":"INFO","msg":"stream: closing","id":"mch9kc15"}
+{"time":"2024-10-23T16:50:44.751278706+03:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2024-10-23T16:50:44.752458634+03:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2024-10-23T16:50:45.76951679+03:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2024-10-23T16:50:46.135602189+03:00","level":"INFO","msg":"handler: closed","stream_id":{"value":"mch9kc15"}}
+{"time":"2024-10-23T16:50:46.135640442+03:00","level":"INFO","msg":"writer: Close: closed","stream_id":{"value":"mch9kc15"}}
+{"time":"2024-10-23T16:50:46.135652595+03:00","level":"INFO","msg":"sender: closed","stream_id":"mch9kc15"}
+{"time":"2024-10-23T16:50:46.135753438+03:00","level":"INFO","msg":"stream: closed","id":"mch9kc15"}

@@ -23,15 +23,17 @@ class ImputationVisualizer:
     def __init__(
         self,
         save_dir: str = "./visualization_results",
-        style: str = "seaborn",
+        style: str = "default",
         context: str = "paper"
     ):
         self.save_dir = Path(save_dir)
         self.save_dir.mkdir(parents=True, exist_ok=True)
         
-        # Set plotting style
-        plt.style.use(style)
-        sns.set_context(context)
+        # Set plotting style safely
+        plt.style.use('default')  # First reset to default
+        sns.set_theme(style="whitegrid")  # Then apply seaborn defaults
+        if context in ["paper", "notebook", "talk", "poster"]:
+            sns.set_context(context)
         
     def plot_imputation_results(
         self,

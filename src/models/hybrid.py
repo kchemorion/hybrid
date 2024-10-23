@@ -110,16 +110,19 @@ class HybridImputationModel(BaseModel):
             raise e
 
     def forward(self, x: torch.Tensor, mask: torch.Tensor) -> Dict[str, torch.Tensor]:
-        # Ensure input types
-        x = x.float()
-        mask = mask.float()  # Keep as float for multiplication
+        print(f"x device: {x.device}, mask device: {mask.device}")
+        print(f"VAE device: {next(self.vae.parameters()).device}")
+        # print(f"BayesianNetwork device: {next(self.bn.parameters()).device}")
+        
+        vae_outputs = self.vae(x, mask)
+        print(f"VAE output device: {vae_outputs['imputed'].device}")
+        
+        bn_predictions = self.bn.predict(vae_outputs['imputed'])
+        print(f"BN predictions device: {bn_predictions.device}")
         
         # Store batch size for belief conversion
         self.last_batch_size = x.size(0)
                 
-        # Get VAE outputs
-        vae_outputs = self.vae(x, mask)
-        
         # Update Bayesian network beliefs and get predictions
         bn_beliefs = self.bn.update_beliefs(vae_outputs['latent'], x * mask)
         bn_predictions = self._convert_beliefs_to_predictions(bn_beliefs)
@@ -176,12 +179,6 @@ class HybridImputationModel(BaseModel):
         # Ensure uncertainty has correct shape
         uncertainty = outputs['uncertainty']
         
-        # Print debug information
-        print(f"Mask shape: {mask.shape}")
-        print(f"X shape: {x.shape}")
-        print(f"Imputed shape: {outputs['imputed'].shape}")
-        print(f"Uncertainty shape: {uncertainty.shape}")
-        
         # VAE reconstruction loss - mask out missing values
         recon_loss = F.gaussian_nll_loss(
             outputs['imputed'][mask],
@@ -190,7 +187,7 @@ class HybridImputationModel(BaseModel):
         )
         
         # KL divergence loss
-        kl_loss = -0.5 * torch.sum(
+        kl_loss = -0.5 * torch.mean(  # Use mean instead of sum
             1 + outputs['logvar'] - outputs['mu'].pow(2) - outputs['logvar'].exp()
         )
         
@@ -213,7 +210,16 @@ class HybridImputationModel(BaseModel):
             uncertainty[mask]
         )
         
-        # Total loss
+        # Ensure all losses are tensors that require grad
+        losses = {
+            'reconstruction_loss': recon_loss,
+            'kl_loss': kl_loss,
+            'bn_loss': bn_loss,
+            'confidence_loss': conf_loss,
+            'uncertainty_loss': uncertainty_loss
+        }
+        
+        # Compute total loss as weighted sum
         total_loss = (
             recon_loss +
             self.beta * kl_loss +
@@ -222,14 +228,10 @@ class HybridImputationModel(BaseModel):
             0.1 * uncertainty_loss
         )
         
-        return {
-            'total_loss': total_loss,
-            'reconstruction_loss': recon_loss,
-            'kl_loss': kl_loss,
-            'bn_loss': bn_loss,
-            'confidence_loss': conf_loss,
-            'uncertainty_loss': uncertainty_loss
-        }
+        # Add total loss to dictionary
+        losses['total_loss'] = total_loss
+        
+        return losses
 
     def _compute_uncertainty_calibration_loss(
         self,
@@ -264,3 +266,27 @@ class HybridImputationModel(BaseModel):
         with torch.no_grad():
             outputs = self.forward(x, mask)
             return outputs['confidence_weights'], outputs['uncertainty']
+
+class HybridModel(nn.Module):
+    def __init__(self, config):
+        super().__init__()
+        self.vae = VAE(config)
+        self.bayesian_network = BayesianNetwork(config)
+        
+    def to(self, device):
+        super().to(device)
+        self.vae.to(device)
+        self.bayesian_network.to(device)
+        return self
+
+    def forward(self, x, mask):
+        # ... existing code ...
+        vae_outputs = self.vae(x, mask)
+        
+        # Replace this line:
+        # bn_predictions = self.bn(vae_outputs['imputed'])
+        
+        # With something like this:
+        bn_predictions = self.bn.predict(vae_outputs['imputed'])
+        
+        # ... rest of the method ...

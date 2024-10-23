@@ -1,0 +1,974 @@
+INFO:__main__:Preparing data...
+INFO:__main__:Creating model...
+INFO:__main__:Starting training...
+Training:   0%|                                                                                                        | 0/157 [00:00<?, ?it/s]/home/blvksh33p/Documents/models/env/lib/python3.10/site-packages/pgmpy/factors/discrete/DiscreteFactor.py:489: RuntimeWarning: invalid value encountered in divide
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+  phi.values = phi.values / phi.values.sum()
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+Training:   4%|███▋                                                                                            | 6/157 [00:04<01:38,  1.54it/s]
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([16, 20])
+bn_predictions shape: torch.Size([16, 20])
+x device: cuda:0, mask device: cuda:0
+VAE device: cuda:0
+VAE output device: cuda:0
+BN predictions device: cuda:0
+vae_outputs['imputed'] shape: torch.Size([64, 20])
+bn_predictions shape: torch.Size([64, 20])
+Traceback (most recent call last):
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/train.py", line 267, in <module>
+    main(args.config)
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/train.py", line 172, in main
+    history = trainer.train(
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/experiments/trainer.py", line 147, in train
+    val_metrics = self._validate_epoch()
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/experiments/trainer.py", line 254, in _validate_epoch
+    x[~mask],
+TypeError: ~ (operator.invert) is only implemented on integer and Boolean-type tensors
+Traceback (most recent call last):
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/train.py", line 267, in <module>
+    main(args.config)
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/train.py", line 172, in main
+    history = trainer.train(
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/experiments/trainer.py", line 147, in train
+    val_metrics = self._validate_epoch()
+  File "/home/blvksh33p/Documents/models/missing_data_imputation/src/experiments/trainer.py", line 254, in _validate_epoch
+    x[~mask],
+TypeError: ~ (operator.invert) is only implemented on integer and Boolean-type tensors

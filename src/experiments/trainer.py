@@ -176,6 +176,8 @@ class Trainer:
             
         return history
     
+    # src/experiments/trainer.py
+
     def _train_epoch(self, gradient_clip_val: float) -> Dict[str, float]:
         """Train for one epoch."""
         self.model.train()
@@ -184,23 +186,31 @@ class Trainer:
         for batch in tqdm(self.train_loader, desc="Training"):
             x, mask = batch
             x = x.to(self.device).float()
-            mask = mask.to(self.device).float()
+            mask = mask.to(self.device).bool()  # Explicitly convert to boolean
             
             # Forward pass
             self.optimizer.zero_grad()
             outputs = self.model(x, mask)
             losses = self.model.compute_loss(x, mask, outputs)
             
-            # Rest remains the same...
+            # Make sure total_loss is a tensor
+            total_loss = losses['total_loss']
+            if not isinstance(total_loss, torch.Tensor):
+                raise ValueError(f"Expected total_loss to be a tensor, got {type(total_loss)}")
             
             # Compute weighted loss
-            total_loss = sum(
-                self.loss_weights[k] * v for k, v in losses.items()
-                if k in self.loss_weights
+            weighted_loss = sum(
+                self.loss_weights.get(k, 1.0) * v 
+                for k, v in losses.items() 
+                if k in self.loss_weights and isinstance(v, torch.Tensor)
             )
             
+            # Ensure weighted_loss is a float
+            weighted_loss = float(weighted_loss)
+            weighted_loss = torch.tensor(weighted_loss, dtype=torch.float32, requires_grad=True, device=self.device)
+            
             # Backward pass
-            total_loss.backward()
+            weighted_loss.backward()
             
             # Gradient clipping
             if gradient_clip_val > 0:
@@ -211,20 +221,17 @@ class Trainer:
                 
             self.optimizer.step()
             
-            # Compute metrics
-            metrics = self.metrics.compute_metrics(
-                x[~mask],
-                outputs['imputed'][~mask]
-            )
-            metrics.update(losses)
+            # Convert loss values to float for metrics
+            metrics = {k: v.item() if isinstance(v, torch.Tensor) else v 
+                    for k, v in losses.items()}
             epoch_metrics.append(metrics)
             
         # Average metrics over epoch
-        avg_metrics = {
-            k: np.mean([m[k].item() for m in epoch_metrics])
-            for k in epoch_metrics[0].keys()
-        }
-        
+        avg_metrics = {}
+        for k in epoch_metrics[0].keys():
+            values = [m[k] for m in epoch_metrics]
+            avg_metrics[k] = np.mean(values)
+            
         return avg_metrics
     
     def _validate_epoch(self) -> Dict[str, float]:
@@ -235,25 +242,30 @@ class Trainer:
         with torch.no_grad():
             for batch in self.val_loader:
                 x, mask = batch
-                x, mask = x.to(self.device), mask.to(self.device)
+                x = x.to(self.device)
+                mask = mask.to(self.device)
+                
+                # Convert mask to boolean type explicitly
+                mask = mask.bool()
                 
                 # Forward pass
                 outputs = self.model(x, mask)
                 losses = self.model.compute_loss(x, mask, outputs)
                 
-                # Compute metrics
+                # Compute metrics on masked elements
+                masked_indices = ~mask  # Now this operation will work correctly
                 metrics = self.metrics.compute_metrics(
-                    x[~mask],
-                    outputs['imputed'][~mask]
+                    x[masked_indices],
+                    outputs['imputed'][masked_indices]
                 )
                 metrics.update(losses)
                 epoch_metrics.append(metrics)
-                
+        
         # Average metrics over epoch
-        avg_metrics = {
-            k: np.mean([m[k].item() for m in epoch_metrics])
-            for k in epoch_metrics[0].keys()
-        }
+        avg_metrics = {}
+        for k in epoch_metrics[0].keys():
+            values = [m[k] for m in epoch_metrics]
+            avg_metrics[k] = np.mean([v.item() if torch.is_tensor(v) else v for v in values])
         
         return avg_metrics
     
@@ -350,3 +362,4 @@ class Trainer:
             wandb.log({f"test_{k}": v for k, v in avg_metrics.items()})
             
         return avg_metrics
+

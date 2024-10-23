@@ -47,4 +47,4 @@ data:
   n_samples: 10000
   n_features: 20
   n_categorical: 5
-  correlation_strength: 0.5
+  correlation_strength: 0.5 

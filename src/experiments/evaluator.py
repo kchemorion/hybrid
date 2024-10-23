@@ -290,16 +290,22 @@ class Evaluator:
         """Generate a comprehensive evaluation report."""
         report = ["# Imputation Model Evaluation Report\n"]
         
-        # Overall comparison
-        report.append("## Model Comparison\n")
-        comparison_df = self.compare_models()
-        report.append(comparison_df.to_markdown())
-        report.append("\n")
-        
-        # Feature-wise analysis
-        report.append("## Feature-wise Analysis\n")
-        for model_name, result in self.results.items():
-            report.append(f"### {model_name}\n")
+        # Single model evaluation
+        if len(self.results) == 1:
+            model_name = list(self.results.keys())[0]
+            result = self.results[model_name]
+            
+            # Overall metrics
+            report.append("## Model Metrics\n")
+            metrics_df = pd.DataFrame({
+                'Metric': result['metrics'].keys(),
+                'Value': result['metrics'].values()
+            })
+            report.append(metrics_df.to_markdown(index=False))
+            report.append("\n")
+            
+            # Feature-wise analysis
+            report.append("## Feature-wise Analysis\n")
             feature_df = pd.DataFrame.from_dict(
                 result['feature_metrics'],
                 orient='index'
@@ -307,21 +313,28 @@ class Evaluator:
             report.append(feature_df.to_markdown())
             report.append("\n")
             
-        # Uncertainty analysis
-        report.append("## Uncertainty Analysis\n")
-        for model_name, result in self.results.items():
-            if result['uncertainties'] is not None:
-                report.append(f"### {model_name}\n")
+            # Uncertainty analysis if available
+            if result.get('uncertainties') is not None:
+                report.append("## Uncertainty Analysis\n")
                 uncertainty_metrics = {
                     k: v for k, v in result['metrics'].items()
-                    if k in ['calibration_error', 'sharpness']
+                    if k in ['calibration_error', 'sharpness', 'error_uncertainty_correlation']
                 }
-                report.append(pd.Series(uncertainty_metrics).to_markdown())
+                uncertainty_df = pd.DataFrame({
+                    'Metric': uncertainty_metrics.keys(),
+                    'Value': uncertainty_metrics.values()
+                })
+                report.append(uncertainty_df.to_markdown(index=False))
                 report.append("\n")
-                
-        # Save report
-        report_path = self.save_dir / 'evaluation_report.md'
-        with open(report_path, 'w') as f:
-            f.write('\n'.join(report))
-            
+        
+        # Multiple model comparison
+        else:
+            report.append("## Model Comparison\n")
+            try:
+                comparison_df = self.compare_models()
+                report.append(comparison_df.to_markdown())
+                report.append("\n")
+            except Exception as e:
+                report.append(f"Error generating model comparison: {str(e)}\n")
+        
         return '\n'.join(report)

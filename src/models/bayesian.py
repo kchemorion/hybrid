@@ -165,3 +165,96 @@ class BayesianNetworkComponent:
             self.model.remove_cpds(old_cpd)
             self.model.add_cpds(new_cpd)
             self.cpds[node] = new_cpd
+    def predict(self, input_data: torch.Tensor) -> torch.Tensor:
+        """
+        Make predictions using the Bayesian network.
+        
+        Args:
+            input_data (torch.Tensor): Input data tensor [batch_size, n_features]
+            
+        Returns:
+            torch.Tensor: Predicted values [batch_size, n_features]
+        """
+        # Convert input to numpy and discretize
+        input_np = input_data.detach().cpu().numpy()
+        discretized_input = self._discretize_data(input_np)
+        
+        # Initialize output array
+        batch_size = input_np.shape[0]
+        predictions = np.zeros_like(input_np)
+        
+        # Ensure CPDs are initialized
+        if self.inference_engine is None:
+            self._initialize_cpds(input_np)
+        
+        # Make predictions for each sample in the batch
+        for i in range(batch_size):
+            sample_evidence = {
+                f'V{j}': discretized_input[i, j]
+                for j in range(self.n_variables)
+            }
+            
+            # Predict each variable
+            for j in range(self.n_variables):
+                var_name = f'V{j}'
+                # Remove the current variable from evidence
+                evidence = {k: v for k, v in sample_evidence.items() if k != var_name}
+                
+                # Query the network
+                if evidence:  # Only query if we have evidence
+                    query_result = self.inference_engine.query(
+                        variables=[var_name],
+                        evidence=evidence
+                    )
+                    # Get the most likely state
+                    predicted_state = np.argmax(query_result.values)
+                else:
+                    # For variables without evidence, use prior probabilities
+                    prior_probs = self.cpds[var_name].values.flatten()
+                    predicted_state = np.argmax(prior_probs)
+                
+                # Convert discrete state back to continuous value
+                # Use the middle value of each bin as the prediction
+                predictions[i, j] = self._state_to_continuous(
+                    predicted_state,
+                    input_np[:, j]
+                )
+        
+        # Convert back to torch tensor on the same device as input
+        return torch.tensor(
+            predictions,
+            dtype=input_data.dtype,
+            device=input_data.device
+        )
+
+    def _state_to_continuous(
+        self,
+        state: int,
+        reference_values: np.ndarray,
+        n_bins: int = 3
+    ) -> float:
+        """
+        Convert discrete state back to continuous value.
+        
+        Args:
+            state: Discrete state index
+            reference_values: Reference values for the feature
+            n_bins: Number of discretization bins
+            
+        Returns:
+            float: Continuous value
+        """
+        # Calculate bin edges using the same method as in _discretize_data
+        bin_edges = np.quantile(
+            reference_values,
+            np.linspace(0, 1, n_bins + 1)
+        )
+        
+        # For the first and last states, use the bin edges
+        if state == 0:
+            return np.mean([bin_edges[0], bin_edges[1]])
+        elif state == n_bins - 1:
+            return np.mean([bin_edges[-2], bin_edges[-1]])
+        else:
+            # For middle states, use the average of adjacent bin edges
+            return np.mean([bin_edges[state], bin_edges[state + 1]])
