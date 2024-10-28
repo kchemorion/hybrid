@@ -2,27 +2,34 @@ import torch
 from torch.utils.data import Dataset, DataLoader
 import numpy as np
 import pandas as pd
-from typing import Dict, List, Tuple, Optional, Union
+from typing import Dict, List, Tuple, Optional, Union, Any
 import scipy.special
-from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
 import h5py
+from torch.utils.data import Dataset, DataLoader, TensorDataset
+from sklearn.impute import SimpleImputer
+import importlib
+
 
 class MissingValueDataset(Dataset):
-    """Dataset for handling data with missing values."""
-
     def __init__(
         self,
-        data: Union[np.ndarray, pd.DataFrame],
-        mask: Optional[np.ndarray] = None,
-        categorical_cols: Optional[List[int]] = None,
-        augmentation: bool = False,
-        missing_mechanism: str = "MCAR",
-        missing_ratio: float = 0.2,
+        data: np.ndarray,  # Accepts only numpy arrays now since preprocessing is done earlier
+        mask: np.ndarray,
+        categorical_cols: List[int],
+        numerical_cols: List[int],
+        augmentation: bool = True,
+        missing_ratio: float = 0.2,  # Keep for consistency or remove if unused
+        seed: int = 42
     ):
-        self.missing_mechanism = missing_mechanism
-        self.missing_ratio = missing_ratio
-        self.augmentation = augmentation
+        self.data = torch.tensor(data, dtype=torch.float32)
+        self.mask = torch.tensor(mask, dtype=torch.bool)
         self.categorical_cols = categorical_cols
+        self.numerical_cols = numerical_cols
+        self.augmentation = augmentation
+        self.missing_ratio = missing_ratio
+        self.seed = seed
+        torch.manual_seed(self.seed) #Added seed for torch
 
         if isinstance(data, pd.DataFrame):
             self.data = data.values
@@ -87,21 +94,24 @@ class MissingValueDataset(Dataset):
         return len(self.data)
 
     def __getitem__(self, idx: int) -> Tuple[torch.Tensor, torch.Tensor]:
-        data = torch.FloatTensor(self.scaled_data[idx])
-        mask = torch.FloatTensor(self.mask[idx])
+        data = self.data[idx].clone() # Clone to avoid inplace modifications on the original tensor
+        mask = self.mask[idx].clone() # Clone to avoid inplace modifications on the original tensor
         if self.augmentation:
             data, mask = self._augment_data(data, mask)
+
         return data, mask
+
 
     def _augment_data(self, data: torch.Tensor, mask: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor]:
         """Apply data augmentation."""
-        for i in range(len(data)):
-            if i not in self.categorical_cols and mask[i] == 1:
-                data[i] += torch.randn(1).item() * 0.1
+        # ... (Add any desired augmentation logic, handling numerical data only)
+        # Example: Adding Gaussian noise to numerical columns with missing values
+        if self.numerical_cols: #Check that there are numerical columns before application
+            noise = torch.randn(len(self.numerical_cols), device=data.device) * 0.1 # create noise on the same device.
+            data[self.numerical_cols] += noise * (~mask[self.numerical_cols]).float() # apply noise only to masked indices
         return data, mask
 
-    def get_dataloader(self, batch_size: int = 32, shuffle: bool = True, num_workers: int = 4) -> DataLoader:
-        """Create DataLoader."""
-        return DataLoader(self, batch_size=batch_size, shuffle=shuffle, num_workers=num_workers, pin_memory=True)
+    def get_dataloader(self, batch_size, shuffle=True, num_workers=4) -> DataLoader:  #Removed default batch size
 
-#The StreamingDataset is removed for brevity as it adds complexity without core functionality changes.  It's easily re-added if needed.
+        dataset = TensorDataset(self.data, self.mask)
+        return DataLoader(dataset, batch_size=batch_size, shuffle=shuffle, num_workers=num_workers, pin_memory=True)

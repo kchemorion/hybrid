@@ -8,22 +8,22 @@ class ModelConfig:
     """Configuration for model architecture and training."""
     
     # Model Type
-    model_type: str = "hybrid"  # Added this field
-    
-    # Model Architecture
-    input_dim: int = None
-    hidden_dims: List[int] = None
-    latent_dim: int = 32
-    n_heads: int = 4
+    model_type: str = "gain"  # Default model type
+    hidden_dim: int = 256  # Hidden dimension for GAIN and VAE
+    latent_dim: int = 32  # Latent dimension for VAE
+    n_heads: int = 4  # Number of attention heads (if applicable)
     dropout_rate: float = 0.1
+    n_components: int = 3 # Number of Gaussian components for GMVAE
+    alpha: float = 10 # changed from 0.1 to 10
     
     # Training Parameters
-    batch_size: int = 64
     learning_rate: float = 1e-3
     weight_decay: float = 1e-5
+    batch_size: int = 128  # Increased batch size
     n_epochs: int = 100
-    early_stopping_patience: int = 10
-    gradient_clip_val: float = 1.0
+    kl_weight: float = 0.1
+    bn_weight: float = 0.5
+    confidence_weight: float = 0.1
     
     # Loss Weights
     reconstruction_weight: float = 1.0
@@ -97,6 +97,12 @@ class DataConfig:
     num_workers: int = 4  # Added if needed
     pin_memory: bool = True  # Added if needed
 
+    data_path: str = ""  # Path to data
+    missing_ratio: float = 0.2
+    categorical_threshold: int = 10  # Threshold for categorical encoding
+    numerical_scaling: bool = True # Whether to scale numerical variables
+    seed: int = 42  # Ensure this exists for data splitting and mask generation
+
 # Default configurations
 DEFAULT_MODEL_CONFIG = {
     'hidden_dims': [256, 128, 64],
@@ -111,6 +117,7 @@ DEFAULT_MODEL_CONFIG = {
 
 DEFAULT_TRAINING_CONFIG = {
     'early_stopping_patience': 10,
+    'seed': 42,
     'gradient_clip_val': 1.0,
     'validation_split': 0.2,
     'test_split': 0.1

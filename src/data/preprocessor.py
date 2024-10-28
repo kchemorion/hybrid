@@ -1,125 +1,95 @@
+# src/data/preprocessor.py
 import numpy as np
 import pandas as pd
-from typing import Dict, List, Optional, Union
-from sklearn.preprocessing import StandardScaler, LabelEncoder, MinMaxScaler
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.impute import SimpleImputer
-import warnings
+from typing import List, Tuple, Optional
 
 class DataPreprocessor:
-    """Data preprocessing for missing value imputation."""
 
-    def __init__(
-        self,
-        categorical_threshold: int = 10,
-        scaling_method: str = "standard",
-        categorical_encoding: str = "onehot",
-        initial_imputation: str = "mean",
-    ):
-        self.categorical_threshold = categorical_threshold
-        self.scaling_method = scaling_method
-        self.categorical_encoding = categorical_encoding
-        self.initial_imputation = initial_imputation
+    def __init__(self, numerical_indices: List[int], categorical_indices: List[int], seed: int = 42):
+        self.numerical_indices = numerical_indices
+        self.categorical_indices = categorical_indices
+        self.numerical_scaler = StandardScaler()
+        self.categorical_encoder = OneHotEncoder(handle_unknown="ignore", sparse_output=False)
+        self.imputer_numerical = SimpleImputer(strategy="mean")
+        self.imputer_categorical = SimpleImputer(strategy="most_frequent")
+        self.seed = seed
+        np.random.seed(self.seed)
 
-        self.scalers: Dict[str, StandardScaler] = {}
-        self.encoders: Dict[str, LabelEncoder] = {}
-        self.imputers: Dict[str, SimpleImputer] = {}
-        self.feature_types: Dict[str, str] = {}
+
         self.feature_names = []
 
-    def fit(self, data: pd.DataFrame, categorical_columns: Optional[List[str]] = None) -> "DataPreprocessor":
-        """Fit preprocessor to data."""
-        self.feature_names = data.columns.tolist()
-        self.feature_types = self._detect_feature_types(data, categorical_columns)
-        self._fit_imputers(data)
-        self._fit_encoders(data)
-        self._fit_scalers(data)
-        return self
+    def fit_transform(self, data: np.ndarray, mask: np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
 
-    def transform(self, data: pd.DataFrame, return_mask: bool = True) -> Union[np.ndarray, Tuple[np.ndarray, np.ndarray]]:
-        """Transform data."""
-        data_copy = data.copy()
-        mask = ~data_copy.isna()
-        data_copy = self._initial_impute(data_copy)
-        data_copy = self._transform_categorical(data_copy)
-        data_copy = self._transform_numerical(data_copy)
-        if return_mask:
-            return data_copy.values, mask.values
-        return data_copy.values
+        if isinstance(data, pd.DataFrame):
+             self.feature_names = list(data.columns)
 
-    def inverse_transform(self, data: np.ndarray) -> pd.DataFrame:
-        """Inverse transform data."""
-        df = pd.DataFrame(data, columns=self.feature_names)
-        for col in self.feature_types:
-            if self.feature_types[col] == "numerical":
-                df[col] = self.scalers[col].inverse_transform(df[[col]])
-            elif self.feature_types[col] == "categorical":
-                df[col] = self.encoders[col].inverse_transform(df[col].astype(int))
-        return df
+        # Separate numerical and categorical features
+        data_numerical = data[:, self.numerical_indices]
+        data_categorical = data[:, self.categorical_indices]
 
-    def _detect_feature_types(self, data: pd.DataFrame, categorical_columns: Optional[List[str]] = None) -> Dict[str, str]:
-        """Detect feature types."""
-        feature_types = {}
-        for col in data.columns:
-            if categorical_columns and col in categorical_columns:
-                feature_types[col] = "categorical"
-            elif data[col].dtype in ["object", "category"] or len(data[col].unique()) < self.categorical_threshold:
-                feature_types[col] = "categorical"
-            else:
-                feature_types[col] = "numerical"
-        return feature_types
+        # Impute missing values in both feature types before scaling/encoding.
+        data_numerical = self.imputer_numerical.fit_transform(data_numerical)
+        data_categorical = self.imputer_categorical.fit_transform(data_categorical)
+        # Scale numerical features
+        data_numerical = self.numerical_scaler.fit_transform(data_numerical)
 
-    def _fit_imputers(self, data: pd.DataFrame):
-        """Fit imputers for missing values."""
-        for col in self.feature_types:
-            if data[col].isna().any():
-                if self.feature_types[col] == "numerical":
-                    imputer = SimpleImputer(strategy=self.initial_imputation)
-                else:
-                    imputer = SimpleImputer(strategy="most_frequent")
-                imputer.fit(data[[col]])
-                self.imputers[col] = imputer
+        # One-hot encode categorical features
+        data_categorical = self.categorical_encoder.fit_transform(data_categorical)
 
-    def _fit_encoders(self, data: pd.DataFrame):
-        """Fit encoders for categorical variables."""
-        for col in self.feature_types:
-            if self.feature_types[col] == "categorical":
-                encoder = LabelEncoder()
-                encoder.fit(data[col].fillna("MISSING"))
-                self.encoders[col] = encoder
+        # Combine preprocessed features
+        data_processed = np.concatenate([data_numerical, data_categorical], axis=1)
 
-    def _fit_scalers(self, data: pd.DataFrame):
-        """Fit scalers for numerical variables."""
-        for col in self.feature_types:
-            if self.feature_types[col] == "numerical":
-                scaler = StandardScaler() if self.scaling_method == "standard" else MinMaxScaler()
-                scaler.fit(data[[col]].dropna().values.reshape(-1, 1))
-                self.scalers[col] = scaler
+        #Apply same imputation to masks
+        mask_num = self.imputer_numerical.transform(mask[:, self.numerical_indices])
+        mask_num = self.numerical_scaler.transform(mask_num)
 
-    def _initial_impute(self, data: pd.DataFrame) -> pd.DataFrame:
-        """Perform initial imputation."""
-        for col in self.feature_types:
-            if data[col].isna().any():
-                data[col] = self.imputers[col].transform(data[[col]])
-        return data
+        #For categorical masks we use one hot encoding
 
-    def _transform_categorical(self, data: pd.DataFrame) -> pd.DataFrame:
-        """Transform categorical variables."""
-        for col in self.feature_types:
-            if self.feature_types[col] == "categorical":
-                data[col] = self.encoders[col].transform(data[col])
-        return data
+        mask_cat = self.categorical_encoder.transform(mask[:, self.categorical_indices])
 
-    def _transform_numerical(self, data: pd.DataFrame) -> pd.DataFrame:
-        """Transform numerical variables."""
-        for col in self.feature_types:
-            if self.feature_types[col] == "numerical":
-                data[col] = self.scalers[col].transform(data[[col]])
-        return data
 
-    def get_feature_info(self) -> Dict[str, Dict]:
-        """Get feature information."""
-        return {
-            "types": self.feature_types,
-            "encoders": {col: type(enc).__name__ for col, enc in self.encoders.items()},
-            "scalers": {col: type(scl).__name__ for col, scl in self.scalers.items()},
-        }
+        mask_processed = np.concatenate([mask_num, mask_cat], axis=1)
+
+        return data_processed, mask_processed
+    
+    def inverse_transform(self, data: np.ndarray) -> np.ndarray: # Changed to return a numpy array since original data may be numpy array
+
+        """ Inverse Transform the data"""
+
+        #Get numerical and categorical feature counts from fitted encoders/scalers
+        n_num_features = (
+            self.numerical_scaler.n_features_in_
+            if hasattr(self.numerical_scaler, "n_features_in_")
+            else len(self.numerical_indices) #for compatibility with older scikit-learn versions
+        )
+        
+        n_cat_features = (
+            self.categorical_encoder.n_features_in_
+            if hasattr(self.categorical_encoder, "n_features_in_")
+            else self.categorical_encoder.categories_[0].shape[0] # for compatability with older scikit-learn versions
+        )
+
+        # Numerical features come first after preprocessing
+        data_numerical = data[:, :n_num_features]
+        data_categorical = data[:, n_num_features:]
+
+        #Inverse transform numerical features
+
+        data_numerical = self.numerical_scaler.inverse_transform(data_numerical)
+        data_numerical = self.imputer_numerical.inverse_transform(data_numerical)  #Apply numerical imputer
+
+
+        #Inverse transform categorical features
+        data_categorical = self.categorical_encoder.inverse_transform(data_categorical)
+        #Apply categorical imputer
+        data_categorical = self.imputer_categorical.inverse_transform(data_categorical)
+
+
+        #Combine the data
+        data_processed = np.concatenate([data_numerical, data_categorical], axis=1) #Modified to work with numpy arrays.
+
+
+
+        return data_processed
