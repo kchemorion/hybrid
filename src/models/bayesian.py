@@ -21,7 +21,7 @@ class BayesianNetworkComponent:
         self.fitted = True
 
     def predict(self, input_data: np.ndarray) -> np.ndarray:
-        """Make predictions."""
+        """Make predictions using fitted linear regression models."""
         if not self.fitted:
             raise RuntimeError("Bayesian Network models must be fitted before prediction.")
         predictions = np.zeros_like(input_data)

@@ -101,37 +101,40 @@ class Evaluator:
         
         return comparison_df
     
-    def _compute_basic_metrics(self, imputed_data: torch.Tensor) -> Dict[str, float]:
+    def _compute_basic_metrics(self, imputed_data: np.ndarray) -> Dict[str, float]:
         """Compute basic imputation metrics."""
-        missing_mask = ~self.mask
+        missing_mask = self.mask.astype(bool) #corrected to bool
         true_missing = self.true_data[missing_mask]
         imputed_missing = imputed_data[missing_mask]
-        
-        return {
-            'rmse': np.sqrt(mean_squared_error(true_missing.cpu(), imputed_missing.cpu())),
-            'mae': mean_absolute_error(true_missing.cpu(), imputed_missing.cpu()),
-            'correlation': pearsonr(true_missing.cpu().numpy(), imputed_missing.cpu().numpy())[0]
-        }
-        
-# src/experiments/evaluator.py (continued)
+        rmse = np.sqrt(mean_squared_error(true_missing, imputed_missing))
+        mae = mean_absolute_error(true_missing, imputed_missing)
+        try:
+          correlation = pearsonr(true_missing.flatten(), imputed_missing.flatten())[0]
+        except ValueError:
+          correlation = np.nan #Handle cases where Pearson correlation is undefined.
+        r2 = r2_score(true_missing, imputed_missing) #Added R-squared
+        return {"rmse": rmse, "mae": mae, "correlation": correlation, "r2":r2}
 
-    def _compute_feature_metrics(self, imputed_data: torch.Tensor) -> Dict[str, Dict[str, float]]:
-        """Compute metrics for each feature separately."""
+    def _compute_feature_metrics(self, imputed_data: np.ndarray) -> Dict[str, Dict[str, float]]:
+        """Compute feature-wise metrics."""
         feature_metrics = {}
-        
         for i, feature_name in enumerate(self.feature_names):
-            # Get missing values for this feature
-            feature_mask = ~self.mask[:, i]
+            feature_mask = self.mask[:, i].astype(bool) #corrected to bool
             true_values = self.true_data[feature_mask, i]
             imputed_values = imputed_data[feature_mask, i]
-            
+            rmse = np.sqrt(mean_squared_error(true_values, imputed_values))
+            mae = mean_absolute_error(true_values, imputed_values)
+            try:
+              correlation = pearsonr(true_values, imputed_values)[0]
+            except ValueError:
+              correlation = np.nan
+            missing_ratio = 1 - np.mean(feature_mask)
             feature_metrics[feature_name] = {
-                'rmse': np.sqrt(mean_squared_error(true_values.cpu(), imputed_values.cpu())),
-                'mae': mean_absolute_error(true_values.cpu(), imputed_values.cpu()),
-                'correlation': pearsonr(true_values.cpu().numpy(), imputed_values.cpu().numpy())[0],
-                'missing_ratio': feature_mask.float().mean().item()
+                "rmse": rmse,
+                "mae": mae,
+                "correlation": correlation,
+                "missing_ratio": missing_ratio,
             }
-            
         return feature_metrics
         
     def _analyze_uncertainties(

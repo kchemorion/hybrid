@@ -176,98 +176,57 @@ class Trainer:
             
         return history
     
-    # src/experiments/trainer.py
-
     def _train_epoch(self, gradient_clip_val: float) -> Dict[str, float]:
-        """Train for one epoch."""
         self.model.train()
         epoch_metrics = []
-        
         for batch in tqdm(self.train_loader, desc="Training"):
             x, mask = batch
             x = x.to(self.device).float()
-            mask = mask.to(self.device).bool()  # Explicitly convert to boolean
-            
-            # Forward pass
+            mask = mask.to(self.device).bool()
             self.optimizer.zero_grad()
             outputs = self.model(x, mask)
             losses = self.model.compute_loss(x, mask, outputs)
-            
-            # Make sure total_loss is a tensor
-            total_loss = losses['total_loss']
+            total_loss = losses["total_loss"]
             if not isinstance(total_loss, torch.Tensor):
                 raise ValueError(f"Expected total_loss to be a tensor, got {type(total_loss)}")
-            
-            # Compute weighted loss
-            weighted_loss = sum(
-                self.loss_weights.get(k, 1.0) * v 
-                for k, v in losses.items() 
-                if k in self.loss_weights and isinstance(v, torch.Tensor)
-            )
-            
-            # Ensure weighted_loss is a float
-            weighted_loss = float(weighted_loss)
-            weighted_loss = torch.tensor(weighted_loss, dtype=torch.float32, requires_grad=True, device=self.device)
-            
-            # Backward pass
-            weighted_loss.backward()
-            
-            # Gradient clipping
+
+            total_loss.backward() #Corrected backward pass
             if gradient_clip_val > 0:
-                torch.nn.utils.clip_grad_norm_(
-                    self.model.parameters(),
-                    gradient_clip_val
-                )
-                
+                torch.nn.utils.clip_grad_norm_(self.model.parameters(), gradient_clip_val)
             self.optimizer.step()
-            
-            # Convert loss values to float for metrics
-            metrics = {k: v.item() if isinstance(v, torch.Tensor) else v 
-                    for k, v in losses.items()}
-            epoch_metrics.append(metrics)
-            
-        # Average metrics over epoch
+            epoch_metrics.append(losses)  #Append the losses directly
+
         avg_metrics = {}
         for k in epoch_metrics[0].keys():
-            values = [m[k] for m in epoch_metrics]
+            values = [m[k].detach().cpu().item() for m in epoch_metrics if torch.is_tensor(m[k])]
             avg_metrics[k] = np.mean(values)
-            
+
         return avg_metrics
-    
+
+
     def _validate_epoch(self) -> Dict[str, float]:
-        """Validate for one epoch."""
         self.model.eval()
         epoch_metrics = []
-        
         with torch.no_grad():
             for batch in self.val_loader:
                 x, mask = batch
-                x = x.to(self.device)
-                mask = mask.to(self.device)
-                
-                # Convert mask to boolean type explicitly
-                mask = mask.bool()
-                
-                # Forward pass
+                x = x.to(self.device).float()
+                mask = mask.to(self.device).bool()
                 outputs = self.model(x, mask)
                 losses = self.model.compute_loss(x, mask, outputs)
-                
-                # Compute metrics on masked elements
-                masked_indices = ~mask  # Now this operation will work correctly
-                metrics = self.metrics.compute_metrics(
-                    x[masked_indices],
-                    outputs['imputed'][masked_indices]
-                )
+                masked_indices = (~mask).view(-1) #Corrected boolean indexing for masked indices
+                metrics = self.metrics.compute_metrics(x.view(-1)[masked_indices], outputs["imputed"].view(-1)[masked_indices])
                 metrics.update(losses)
                 epoch_metrics.append(metrics)
-        
-        # Average metrics over epoch
+
+
         avg_metrics = {}
         for k in epoch_metrics[0].keys():
-            values = [m[k] for m in epoch_metrics]
-            avg_metrics[k] = np.mean([v.item() if torch.is_tensor(v) else v for v in values])
-        
+            values = [m[k].detach().cpu().item() for m in epoch_metrics if torch.is_tensor(m[k])]
+            avg_metrics[k] = np.mean(values)
+
         return avg_metrics
+
     
     def _log_metrics(
         self,

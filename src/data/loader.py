@@ -71,7 +71,7 @@ class MissingValueDataset(Dataset):
         return scaled_data
 
     def _generate_missing_mask(self, data: np.ndarray) -> np.ndarray:
-        """Generate missing value mask."""
+        """Generate missing value mask based on the specified mechanism."""
         mask = np.ones_like(data, dtype=bool)
         if self.missing_mechanism == "MCAR":
             mask = np.random.rand(*data.shape) > self.missing_ratio

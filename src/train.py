@@ -78,19 +78,23 @@ def prepare_data(config: DataConfig) -> tuple:
     # Create datasets
     train_dataset = MissingValueDataset(
         data=data,
+        mask=mask,
+        categorical_cols=preprocessor.feature_types,
         missing_mechanism=config.missing_mechanism,
         missing_ratio=config.missing_ratio,
-        augmentation=config.use_augmentation
+        augmentation=config.use_augmentation,
     )
     
     val_dataset = MissingValueDataset(
         data=data,
+        mask=mask,
+        categorical_cols=preprocessor.feature_types,
         missing_mechanism=config.missing_mechanism,
         missing_ratio=config.missing_ratio,
         augmentation=False
     )
-    
-    # Create dataloaders
+
+
     train_loader = train_dataset.get_dataloader(
         batch_size=config.batch_size,
         shuffle=True,
@@ -179,23 +183,23 @@ def main(config_path: str):
     logger.info("Evaluating model...")
     evaluator = Evaluator(
         true_data=val_loader.dataset.data,
-        mask=val_loader.dataset.mask,
-        feature_names=preprocessor.feature_names if hasattr(preprocessor, 'feature_names') else None,
-        save_dir=exp_config.results_dir
+        mask=val_loader.dataset.mask.astype(bool),
+        feature_names=preprocessor.feature_names,
+        save_dir=exp_config.results_dir,
     )
     
     # Get model predictions
     model.eval()
     with torch.no_grad():
         imputed_data, uncertainties = model.impute(
-            val_loader.dataset.data.to(device),
-            val_loader.dataset.mask.to(device),
-            return_uncertainties=True
+            torch.tensor(val_loader.dataset.data, dtype=torch.float32, device=device), #Explicitly convert to tensor
+            torch.tensor(val_loader.dataset.mask, dtype=torch.bool, device=device), #Explicitly convert to boolean tensor
+            return_uncertainties=True,
         )
     
-    # Move tensors back to CPU for evaluation
-    imputed_data = imputed_data.cpu()
-    uncertainties = uncertainties.cpu()
+    #Move tensors back to CPU for evaluation
+    imputed_data = imputed_data.cpu().numpy()
+    uncertainties = uncertainties.cpu().numpy()
     
     # Evaluate and visualize results
     evaluator.evaluate_model(
