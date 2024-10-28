@@ -1,13 +1,11 @@
-# setup.py
-
 from setuptools import setup, find_packages
 
 setup(
     name="hybrid-missing-data-imputation",
     version="0.1.0",
-    description="Hybrid Deep Learning Models for Missing Data Imputation in Clinical Trials",
-    author="Your Name",
-    author_email="your.email@example.com",
+    description="Hybrid Deep Learning Models for Missing Data Imputation",
+    author="Francis Kiptengwer Chemorion",
+    author_email="kchemorionl@gmail.com",
     packages=find_packages(),
     install_requires=[
         "torch>=1.9.0",
@@ -23,6 +21,7 @@ setup(
         "black>=21.9b0",
         "flake8>=3.9.2",
         "mypy>=0.910",
+        "tqdm" # Added tqdm for progress bars
     ],
     extras_require={
         "dev": [
